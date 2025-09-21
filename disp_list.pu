@@ -1,10 +1,10 @@
 @startuml
 actor "Sistema Externo" as SE
 participant "UEg: Gerenciamento" as UEg
-participant "Banco de Dados" as BD
+participant "UEv" as UEv
 
 SE -> UEg : Solicita listas atualizadas
-UEg -> BD : Buscar listas de candidatos e eleitores
-BD --> UEg : Retorna listas
+UEg -> UEv : Buscar listas de candidatos e eleitores
+UEv --> UEg : Retorna listas
 UEg -> SE : Retorna listas para consulta
 @enduml

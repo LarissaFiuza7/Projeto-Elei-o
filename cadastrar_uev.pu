@@ -1,0 +1,13 @@
+@startuml
+actor "Sistema Externo" as SE
+participant "UEg: Gerenciamento" as UEg
+
+SE -> UEg : Solicita cadastro de nova UEv (dados)
+UEg -> UEg : Valida dados e verifica existência de UEv
+alt UEv não existe
+    UEg -> UEg : Cadastra nova UEv
+    UEg -> SE : Confirmação de cadastro
+else UEv já existe
+    UEg -> SE : Informa falha (UEv já cadastrada)
+end
+@enduml

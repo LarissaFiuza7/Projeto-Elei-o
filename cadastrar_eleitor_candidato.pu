@@ -1,16 +1,13 @@
 @startuml
 actor "Eleitor/Candidato" as Usuario
 participant "UEg: Gerenciamento" as UEg
-participant "Banco de Dados" as BD
 
 Usuario -> UEg : Solicita cadastro (dados pessoais)
-UEg -> BD : Verificar existência de usuário (por documento)
-BD --> UEg : Retorno (existe/não existe)
-alt Usuário não existe
-    UEg -> BD : Salvar novo cadastro
-    BD --> UEg : Confirmação de cadastro
-    UEg -> Usuario : Cadastro realizado com sucesso
-else Usuário já existe
+UEg -> UEg : Valida dados e verifica existência de cadastro
+alt Cadastro não existe
+    UEg -> UEg : Realiza cadastro
+    UEg -> Usuario : Informa sucesso no cadastro
+else Já cadastrado
     UEg -> Usuario : Informa falha (já cadastrado)
 end
 @enduml
