@@ -1,0 +1,16 @@
+@startuml
+actor "Eleitor/Candidato" as Usuario
+participant "UEg: Gerenciamento" as UEg
+participant "Banco de Dados" as BD
+
+Usuario -> UEg : Solicita cadastro (dados pessoais)
+UEg -> BD : Verificar existência de usuário (por documento)
+BD --> UEg : Retorno (existe/não existe)
+alt Usuário não existe
+    UEg -> BD : Salvar novo cadastro
+    BD --> UEg : Confirmação de cadastro
+    UEg -> Usuario : Cadastro realizado com sucesso
+else Usuário já existe
+    UEg -> Usuario : Informa falha (já cadastrado)
+end
+@enduml

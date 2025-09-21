@@ -1,0 +1,10 @@
+@startuml
+actor "Sistema Externo" as SE
+participant "UEg: Gerenciamento" as UEg
+participant "Banco de Dados" as BD
+
+SE -> UEg : Solicitar apresentação dos resultados
+UEg -> BD : Buscar apuração/resultados
+BD --> UEg : Retorna resultados parciais/finais
+UEg -> SE : Exibe resultados (tabela/gráfico)
+@enduml

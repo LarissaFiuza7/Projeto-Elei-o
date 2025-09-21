@@ -1,0 +1,18 @@
+@startuml
+actor "Eleitor" as Eleitor
+participant "UEv: Votação" as UEV
+participant "Banco de Dados" as BD
+
+Eleitor -> UEV : Solicita iniciar votação
+UEV -> BD : Verifica se eleitor já votou
+BD --> UEV : Votou / Não votou
+alt Eleitor não votou
+    UEV -> Eleitor : Exibe opções de voto
+    Eleitor -> UEV : Seleciona candidato(s)/voto em branco/nulo
+    UEV -> BD : Registra voto
+    BD --> UEV : Confirmação voto
+    UEV -> Eleitor : Exibe mensagem de sucesso/fim
+else Já votou
+    UEV -> Eleitor : Informa que já votou
+end
+@enduml
